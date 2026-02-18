@@ -54,12 +54,8 @@ const reducer = (
     case "deleted":
       return specifications.filter((spec) => spec.id !== action.id);
     case "updated":
-      return specifications.reduce(
-        (prev, curr) =>
-          curr.id === action.id
-            ? [...prev, { id: curr.id, ...action.field }]
-            : [...prev, curr],
-        [] as Specification[],
+      return specifications.map((spec) =>
+        spec.id === action.id ? { ...spec, ...action.field } : spec,
       );
     default:
       throw new Error(`Invalid action type: ${action satisfies never}`);
@@ -118,6 +114,7 @@ export default function ProductCreateForm() {
           defaultValue={state.data?.description ?? ""}
           aria-invalid={!!state.errors?.description}
         />
+        {/*  */}
         {state.errors?.description && (
           <FieldError>{state.errors.description.errors}</FieldError>
         )}
