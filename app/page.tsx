@@ -71,7 +71,8 @@ export default function ProductCreateForm() {
         <Checkbox
           id="isFeatured"
           name="isFeatured"
-          defaultChecked={state.data?.isFeatured ?? false}
+          value="true"
+          defaultChecked={state.data?.isFeatured === "true"}
           aria-invalid={!!state.errors?.isFeatured}
         />
         <FieldLabel htmlFor="isFeatured">Mark as featured</FieldLabel>
